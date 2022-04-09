@@ -1,0 +1,62 @@
+--Query that returns data in every column from table nomnom
+SELECT *
+FROM nomnom;
+
+--Query that returns unique values in the neighbourhood column of the nomnom table therefore filters out duplicates
+SELECT DISTINCT neighborhood 
+FROM nomnom;
+
+--Query that returns unique values in the cuisine column of the nomnom table therefore filters out duplicates
+SELECT DISTINCT cuisine 
+FROM nomnom;
+
+--Query that returns data in all columns of the nomnom table where the value in the cuisine column is equal to the string 'Chinese'
+SELECT *
+FROM nomnom
+WHERE cuisine ='Chinese';
+
+--Query that returns data in all columns of the nomnom table where the value in the review column is more than or equal to the integer 4
+SELECT *
+FROM nomnom
+WHERE review >= 4;
+
+--Query that returns data in all columns of the nomnom table where two conditions are met, 1. The value in the cuisine column is equal to the string 'Italian' and the value in the price column is equal to the string '$$$'
+SELECT *
+FROM nomnom
+WHERE cuisine = 'Italian' AND price = '$$$';
+
+
+--Query that returns data in all columns of the nomnom table where the a specific pattern is met in the name column. The pattern being a string that contains the word 'meatball'. Other characters can be eitherside of this string.
+SELECT *
+FROM nomnom
+WHERE name LIKE '%meatball%';
+
+--Query that returns data in all columns of the nomnom table where at least one of the following conditions is met: The value in the neighborhood column is 'Midtown', 'Downtown', or 'Chinatown'
+SELECT *
+FROM nomnom
+WHERE neighborhood = 'Midtown'
+   OR neighborhood = 'Downtown'
+   OR neighborhood = 'Chinatown'; 
+
+--Query that returns data in all columns of the nomnom table where the value in the health column is the data type NULL
+SELECT *
+FROM nomnom
+WHERE health IS NULL;
+
+--Query that selects data in all columns of the nomnom table with a limit of only 10 rows, the data return is ordered in a descending fashion based on the values in the review table
+SELECT *
+FROM nomnom
+ORDER BY review DESC
+LIMIT 10;
+
+
+--Query that returns data in the name column, if the value in the review column is less than 4.5 then the string 'Extraordinary' is returner. If the value is less than 4 'Excellent' is returned. If the value in the review column is more than 3 then 'Good' is returned. If the value is more than 2 then 'Fair' is returned. if no conditions are met then 'Poor' is returned. The returned values are given the column name alias 'Review'
+SELECT name,
+ CASE
+  WHEN review > 4.5 THEN 'Extraordinary'
+  WHEN review > 4 THEN 'Excellent'
+  WHEN review > 3 THEN 'Good'
+  WHEN review > 2 THEN 'Fair'
+  ELSE 'Poor'
+ END AS 'Review'
+FROM nomnom;
