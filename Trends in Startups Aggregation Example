@@ -1,0 +1,44 @@
+-- Query that returns every column data from the startups table
+SELECT *
+FROM startups;
+
+--Query that returns the amount of data entrys/rows in the startup table
+SELECT COUNT(*)
+FROM startups;
+
+--Query that returns a value which is the sum of all data entrys in the valuation column of the startup table
+SELECT SUM(valuation)
+FROM startups;
+
+
+--Query that returns the largest value in the raised column of the startups table where the value in the stage column is equal to 'Seed'
+SELECT MAX(raised)
+FROM startups
+WHERE stage = 'Seed';
+
+--Query that returns the smallest value in the foundec column of the startups table
+SELECT MIN(founded) FROM startups;
+
+--Query that returns the average of the data in the valuation column of the startups table
+SELECT AVG(valuation) FROM startups;
+
+--Query that returns the average value of the category column enteries rounded to 2 decimal places from the startups table, then displays them grouped together based on the category and ordered in a descending way by the second column
+SELECT category, ROUND(AVG(valuation), 2) FROM startups
+GROUP BY category
+ORDER BY 2 DESC;
+
+
+--Query that returns the amount of data entries in the category column of the statups table and groups them based on the category specified for all categories that are present more than 3 times
+SELECT category,
+COUNT(*)
+FROM startups
+GROUP BY category
+HAVING COUNT(*) > 3;
+
+
+--Query that returns the location column values of the startup table and groups them by the location column value , returning only the values that have an average of more than 500 employees and their associated amount of employees 
+SELECT location, 
+AVG(employees)
+FROM startups
+GROUP BY location
+HAVING AVG(employees) > 500;
